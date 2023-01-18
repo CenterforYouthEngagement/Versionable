@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "Versionable",
             targets: ["Versionable"]),
+        .library(
+            name: "VersionableTestingUtilities",
+            targets: ["VersionableTests"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
