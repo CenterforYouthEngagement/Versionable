@@ -3,6 +3,16 @@
 
 import PackageDescription
 
+/*
+ We're using a 2 target structure:
+    1. Versionable - contains the protocol `Versionable` and it's associated fuctionality
+    2. VersionableTests - contains the testing "abstract" class that is to be subclassed in consuming apps/packages to test `Versionable` conforming model objects.
+ This 2 target approach is necessary as `.xcodeproj` files can't import XCTest in their main app target and therefore the "abstract" test class can't be inside `Versionable` (which is the target improted in `.xcodeproj`s). We can't keep the default `testTarget` for `VersionableTests` since we struggled with importing `VersionableTests` in other package's test targets with that configuration.
+ For this reason, we have the 2 regular targets and 2 products associated with these targets:
+    1. Target: Versionable & Product: Versionable - imported into `.xcodeproj` and other SwiftPM Packages
+    2. Target: VersionableTests & Product: VersionableTestingUtilities (Xcode gave us a better time when names were different) - improted into `.xcodeproj`'s and SwiftPM Package test targets
+ */
+
 let package = Package(
     name: "Versionable",
     products: [
