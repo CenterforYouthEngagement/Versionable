@@ -9,9 +9,16 @@ import XCTest
 
 open class VersionableTests<Model>: XCTestCase where Model: Versionable, Model: Decodable {
     
-    struct DecodingExpectation {
+    public struct DecodingExpectation {
+        
         let model: Model
         let json: String
+        
+        public init(model: Model, json: String) {
+            self.model = model
+            self.json = json
+        }
+        
     }
     
     /// A dictionary with `DecodingExpectation` for each `Version`.
@@ -20,7 +27,7 @@ open class VersionableTests<Model>: XCTestCase where Model: Versionable, Model: 
     /// should look like for a model and the output of decoding of that JSON.
     /// Allows us to test all of the versions of this model and how decoding of files
     /// containing any version of this model would be migrated forward to the latest version.
-    var expectations: [Model.Version: DecodingExpectation] {
+    open var expectations: [Model.Version: DecodingExpectation] {
         [:] // empty since this would be implemented in subclasses of `VersionableTests`
     }
     
