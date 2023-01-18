@@ -24,8 +24,9 @@ let package = Package(
         .target(
             name: "Versionable",
             dependencies: []),
-        .testTarget(
+        .target(
             name: "VersionableTests",
-            dependencies: ["Versionable"]),
+            dependencies: ["Versionable"],
+            path: "Tests/"),
     ]
 )
