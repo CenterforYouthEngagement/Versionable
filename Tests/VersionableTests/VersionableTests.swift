@@ -12,8 +12,8 @@ open class VersionableTests<Model>: XCTestCase where Model: Versionable, Model: 
     
     public struct DecodingExpectation {
         
-        let model: Model
-        let json: String
+        public let model: Model
+        public let json: String
         
         public init(model: Model, json: String) {
             self.model = model
